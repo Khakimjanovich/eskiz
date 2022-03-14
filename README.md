@@ -1,6 +1,4 @@
-Please see [this repo](https://github.com/laravel-notification-channels/channels) for instructions on how to submit a channel proposal.
-
-# A Boilerplate repo for contributions
+# Eskiz.uz notifications channel for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/:package_name.svg?style=flat-square)](https://packagist.org/packages/laravel-notification-channels/:package_name)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -23,7 +21,7 @@ This is where your description should go. Add a little code example so build can
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+	- [Setting up the Eskiz](#setting-up-the-:service_name-service)
 - [Usage](#usage)
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
@@ -36,19 +34,58 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+This package can be installed via composer:
 
-### Setting up the :service_name service
+```composer require laravel-notification-channels/eskiz```
 
-Optionally include a few steps how users can set up the service.
+
+### Setting up the Eskiz service
+
+1. Create an account and get the API key [here](https://notify.eskiz.uz/api/auth/login)
+
+2. Add the API key to the `services.php` config file:
+
+   ```php
+   // config/services.php
+   ...
+   'eskiz' => [
+       'api_key' => env('ESKIZ_API_KEY'),
+       'from'    => env('ESKIZ_NICKNAME'),
+   ],
+   ...
+   ```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+You can use this channel by adding `SMS77Channel::class` to the array in the `via()` method of your notification class. You need to add the `toSms77()` method which should return a `new SMS77Message()` object.
+
+```php
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Eskiz\EskizChannel;
+use NotificationChannels\Eskiz\EskizMessage;
+
+class InvoicePaid extends Notification
+{
+    public function via($notifiable)
+    {
+        return [EskizChannel::class];
+    }
+
+    public function toEskiz() {
+        return new EskizMessage('Mendan senga salomlar bolsin megajin!');
+    }
+}
+```
 
 ### Available Message methods
 
-A list of all available options
+- `getPayloadValue($key)`: Returns payload value for a given key.
+- `content(string $message)`: Sets SMS message text.
+- `to(string $number)`: Set recipients number.
 
 ## Changelog
 
@@ -70,7 +107,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [khakimjanovich](https://github.com/khakimjanovich)
 - [All Contributors](../../contributors)
 
 ## License

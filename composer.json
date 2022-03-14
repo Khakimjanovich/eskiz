@@ -1,18 +1,19 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/eskiz",
+    "description": "Eskiz notification channel for Laravel",
+    "homepage": "https://github.com/laravel-notification-channels/eskiz",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Abduraxmanov Yunusali",
+            "email": "yunusalikhakimjanovich@gmail.com",
+            "homepage": "https://heey.uz",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.4",
         "illuminate/notifications": "~6.0 || ~7.0 || ~8.0",
         "illuminate/support": "~6.0 || ~7.0 || ~8.0"
     },
@@ -22,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\Eskiz\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\Eskiz\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -36,5 +37,12 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NotificationChannels\\Eskiz\\EskizServiceProvider"
+            ]
+        }
     }
 }
