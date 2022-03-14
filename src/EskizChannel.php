@@ -11,7 +11,7 @@ class EskizChannel
     /**
      * @var Eskiz
      */
-    protected Eskiz $eskiz;
+    protected $eskiz;
 
     /**
      * @param Eskiz $eskiz

@@ -14,17 +14,17 @@ class Eskiz
     /**
      * @var string ESKIZ API URL.
      */
-    protected string $apiUrl = 'https://notify.eskiz.uz/api';
+    protected $apiUrl = 'https://notify.eskiz.uz/api';
 
     /**
      * @var HttpClient HTTP Client.
      */
-    protected HttpClient $http;
+    protected $http;
 
     /**
      * @var null|string Eskiz API Key.
      */
-    protected ?string $apiKey;
+    protected $apiKey;
 
     /**
      * @param string|null $apiKey

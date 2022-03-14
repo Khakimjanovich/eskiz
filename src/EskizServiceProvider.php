@@ -29,5 +29,6 @@ class EskizServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //register
     }
 }

@@ -4,7 +4,7 @@ namespace NotificationChannels\Eskiz;
 
 class EskizMessage
 {
-    protected array $payload = [];
+    protected $payload = [];
 
     /**
      * @param string $message
